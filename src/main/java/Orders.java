@@ -1,8 +1,13 @@
+import java.util.List;
+
 public class Orders {
     private int courierId;
     private String nearestStation;
     private int limit;
     private int page;
+    private List<Order> orders;
+    private PageInfo pageInfo;
+    private List<AvailableStation> availableStations;
 
     public int getCourierId() {
         return courierId;
@@ -34,5 +39,13 @@ public class Orders {
 
     public void setPage(int page) {
         this.page = page;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
