@@ -9,6 +9,22 @@ public class Orders {
     private PageInfo pageInfo;
     private List<AvailableStation> availableStations;
 
+    public PageInfo getPageInfo() {
+        return pageInfo;
+    }
+
+    public void setPageInfo(PageInfo pageInfo) {
+        this.pageInfo = pageInfo;
+    }
+
+    public List<AvailableStation> getAvailableStations() {
+        return availableStations;
+    }
+
+    public void setAvailableStations(List<AvailableStation> availableStations) {
+        this.availableStations = availableStations;
+    }
+
     public int getCourierId() {
         return courierId;
     }
