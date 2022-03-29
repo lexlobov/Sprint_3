@@ -9,6 +9,10 @@ public class Orders {
     private PageInfo pageInfo;
     private List<AvailableStation> availableStations;
 
+    public Orders(){
+
+    }
+
     public PageInfo getPageInfo() {
         return pageInfo;
     }

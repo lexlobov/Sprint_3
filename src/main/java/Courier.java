@@ -14,6 +14,9 @@ public class Courier {
         this.password = password;
     }
 
+    public Courier() {
+    }
+
     public String getLogin() {
         return login;
     }

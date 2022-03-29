@@ -34,6 +34,10 @@ public class Order {
         this.comment = comment;
     }
 
+    public Order(){
+
+    }
+
     public String getFirstName() {
         return firstName;
     }
