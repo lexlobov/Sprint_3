@@ -1,13 +1,10 @@
 package client;
-
 import io.restassured.response.Response;
-
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.post;
 
 public class BaseHTTPClient {
 
-    private final String BASE_URL = "http://qa-scooter.praktikum-services.ru";
+
     private final String JSON = "application/json";
 
     protected Response doGetRequest (String uri){
@@ -15,14 +12,16 @@ public class BaseHTTPClient {
                 .header("Content-Type", JSON)
                 .get(uri);
     }
-    protected Response doPostRequest(String uri){
+    protected Response doPostRequest(String uri, Object object){
         return given()
                 .header("Content-Type", JSON)
+                .body(object)
                 .post(uri);
     }
-    protected Response doDeleteRequest(String uri){
+    protected Response doDeleteRequest(String uri, Object object){
         return given()
                 .header("Content-Type", JSON)
+                .body(object)
                 .delete(uri);
     }
 
