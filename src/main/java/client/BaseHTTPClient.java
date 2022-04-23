@@ -3,6 +3,7 @@ package client;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.post;
 
 public class BaseHTTPClient {
 
@@ -13,6 +14,16 @@ public class BaseHTTPClient {
         return given()
                 .header("Content-Type", JSON)
                 .get(uri);
+    }
+    protected Response doPostRequest(String uri){
+        return given()
+                .header("Content-Type", JSON)
+                .post(uri);
+    }
+    protected Response doDeleteRequest(String uri){
+        return given()
+                .header("Content-Type", JSON)
+                .delete(uri);
     }
 
         }
