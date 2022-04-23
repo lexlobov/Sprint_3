@@ -1,3 +1,5 @@
+package Models;
+
 public class PageInfo {
     private int page;
     private int total;

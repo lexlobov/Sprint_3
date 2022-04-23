@@ -1,3 +1,5 @@
+package Models;
+
 public class AvailableStation {
     private String name;
     private String number;

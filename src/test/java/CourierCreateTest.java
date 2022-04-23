@@ -1,3 +1,4 @@
+import Models.Courier;
 import org.junit.Test;
 
 public class CourierCreateTest {

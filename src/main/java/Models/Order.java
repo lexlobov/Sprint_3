@@ -1,4 +1,6 @@
-import java.util.List;
+package Models;
+
+import Models.Color;
 
 public class Order {
     private String firstName;
