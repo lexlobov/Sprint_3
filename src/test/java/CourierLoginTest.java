@@ -12,7 +12,7 @@ public class CourierLoginTest {
     }
 
     @After
-    public void tearDown(){
+    public void cleanUp(){
         steps.deleteCourier();
     }
 
@@ -26,5 +26,10 @@ public class CourierLoginTest {
     @Test
     public void testCourierLoggedReturnsPositiveId(){
         steps.checkCourierLoginReturnsId();
+    }
+
+    @Test
+    public void testCourierLoginWithIncorrectPassword(){
+        steps.checkLoginIncorrectPassword();
     }
 }

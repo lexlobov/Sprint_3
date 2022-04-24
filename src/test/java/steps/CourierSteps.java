@@ -59,6 +59,12 @@ public class CourierSteps {
         assertThat(badRequestApiAnswer.getMessage()).isEqualTo("Недостаточно данных для входа");
     }
 
+    public void checkLoginIncorrectPassword(){
+        String incorrectPassword = RandomStringUtils.randomAlphabetic(10);
+        BadRequestApiAnswer badRequestApiAnswer = loginCourierApiClient.loginCourierBadRequest(login, incorrectPassword);
+        assertThat(badRequestApiAnswer.getMessage()).isEqualTo("Учетная запись не найдена");
+    }
+
 
 
     public String getLogin() {
