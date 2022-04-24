@@ -34,24 +34,20 @@ public class CourierSteps {
         createCourierApiClient.createCourierPositive(login, password, firstName);
     }
 
-    public void loginCourier(){
-        setCourierId(loginCourierApiClient.loginCourierPositive(login, password).getId());
-
-    }
-
     public void deleteCourier(){
         deleteCourierApiClient.deleteCourierOk(getCourierId());
-
     }
 
     public void checkCourierLoggedIn(){
         CourierLoginOk courierLoginOk = loginCourierApiClient.loginCourierPositive(login, password);
         assertThat(courierLoginOk.getId()).isNotNull();
+        setCourierId(courierLoginOk.getId());
     }
 
     public void checkCourierLoginReturnsId(){
         CourierLoginOk courierLoginOk = loginCourierApiClient.loginCourierPositive(login, password);
         assertThat(courierLoginOk.getId()).isGreaterThan(1l);
+        setCourierId(courierLoginOk.getId());
     }
 
     public void checkLoginNotEnoughData(String login, String password){

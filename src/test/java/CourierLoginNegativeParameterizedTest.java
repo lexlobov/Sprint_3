@@ -21,8 +21,8 @@ public class CourierLoginNegativeParameterizedTest {
         return new Object[][]{
 
                 {RandomStringUtils.randomAlphabetic(10),    ""},
-                {"",                                                RandomStringUtils.randomAlphabetic(10)},
-                {"",                                        ""}
+                {"",                                              RandomStringUtils.randomAlphabetic(10)},
+                {"",                                              ""}
         };
     }
 
