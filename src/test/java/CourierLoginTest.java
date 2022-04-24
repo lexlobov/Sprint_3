@@ -14,6 +14,7 @@ public class CourierLoginTest {
 
     @After
     public void cleanUp(){
+        steps.loginCourier();
         steps.deleteCourier();
     }
 

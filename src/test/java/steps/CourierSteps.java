@@ -1,6 +1,7 @@
 package steps;
 
 import Models.ApiAnswers.BadRequestApiAnswer;
+import Models.ApiAnswers.OkApiAnswer;
 import Models.CourierLoginOk;
 import client.CreateCourierApiClient;
 import client.DeleteCourierApiClient;
@@ -34,6 +35,10 @@ public class CourierSteps {
         createCourierApiClient.createCourierPositive(login, password, firstName);
     }
 
+    public void loginCourier(){
+        setCourierId(loginCourierApiClient.loginCourierPositive(login, password).getId());
+    }
+
     public void deleteCourier(){
         deleteCourierApiClient.deleteCourierOk(getCourierId());
     }
@@ -41,13 +46,11 @@ public class CourierSteps {
     public void checkCourierLoggedIn(){
         CourierLoginOk courierLoginOk = loginCourierApiClient.loginCourierPositive(login, password);
         assertThat(courierLoginOk.getId()).isNotNull();
-        setCourierId(courierLoginOk.getId());
     }
 
     public void checkCourierLoginReturnsId(){
         CourierLoginOk courierLoginOk = loginCourierApiClient.loginCourierPositive(login, password);
         assertThat(courierLoginOk.getId()).isGreaterThan(1l);
-        setCourierId(courierLoginOk.getId());
     }
 
     public void checkLoginNotEnoughData(String login, String password){
@@ -65,6 +68,19 @@ public class CourierSteps {
         String incorrectLogin = RandomStringUtils.randomAlphabetic(10);
         BadRequestApiAnswer badRequestApiAnswer = loginCourierApiClient.loginCourierBadRequest(incorrectLogin, password);
         assertThat(badRequestApiAnswer.getMessage()).isEqualTo("Учетная запись не найдена");
+    }
+
+    public void checkCourierCreated(){
+        generateCourierData();
+        OkApiAnswer okApiAnswer = createCourierApiClient.createCourierPositive(login, password, firstName);
+        assertThat(okApiAnswer.isOk()).isEqualTo(true);
+    }
+
+    public void checkSameNameCourierCantBeCreated(){
+        generateCourierData();
+        createCourierApiClient.createCourierPositive(login, password, firstName);
+        BadRequestApiAnswer badRequestApiAnswer = createCourierApiClient.createCourierBadRequest(login, password, firstName);
+        assertThat(badRequestApiAnswer.getMessage()).isEqualTo("Этот логин уже используется");
     }
 
 
