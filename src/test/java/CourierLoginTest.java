@@ -22,4 +22,9 @@ public class CourierLoginTest {
         steps.checkCourierLoggedIn();
 
     }
+
+    @Test
+    public void testCourierLoggedReturnsPositiveId(){
+        steps.checkCourierLoginReturnsId();
+    }
 }

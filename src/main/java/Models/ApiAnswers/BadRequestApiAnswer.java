@@ -2,9 +2,14 @@ package Models.ApiAnswers;
 
 public class BadRequestApiAnswer {
     private String message;
+    private int code;
 
-    public BadRequestApiAnswer(String message) {
+    public BadRequestApiAnswer(int code, String message) {
         this.message = message;
+        this.code = code;
+    }
+
+    public BadRequestApiAnswer() {
     }
 
     public String getMessage() {
@@ -13,5 +18,13 @@ public class BadRequestApiAnswer {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 }

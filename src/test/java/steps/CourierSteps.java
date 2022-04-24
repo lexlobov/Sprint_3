@@ -1,6 +1,6 @@
 package steps;
 
-import Models.ApiAnswers.OkApiAnswer;
+import Models.ApiAnswers.BadRequestApiAnswer;
 import Models.CourierLoginOk;
 import client.CreateCourierApiClient;
 import client.DeleteCourierApiClient;
@@ -47,6 +47,16 @@ public class CourierSteps {
     public void checkCourierLoggedIn(){
         CourierLoginOk courierLoginOk = loginCourierApiClient.loginCourierPositive(login, password);
         assertThat(courierLoginOk.getId()).isNotNull();
+    }
+
+    public void checkCourierLoginReturnsId(){
+        CourierLoginOk courierLoginOk = loginCourierApiClient.loginCourierPositive(login, password);
+        assertThat(courierLoginOk.getId()).isGreaterThan(1l);
+    }
+
+    public void checkLoginNotEnoughData(String login, String password){
+        BadRequestApiAnswer badRequestApiAnswer = loginCourierApiClient.loginCourierBadRequest(login, password);
+        assertThat(badRequestApiAnswer.getMessage()).isEqualTo("Недостаточно данных для входа");
     }
 
 

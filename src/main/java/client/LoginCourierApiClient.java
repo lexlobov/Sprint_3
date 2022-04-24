@@ -12,13 +12,12 @@ public class LoginCourierApiClient extends BaseHTTPClient {
 
     public CourierLoginOk loginCourierPositive(String login, String password){
         Courier courier = new Courier(login, password);
-        CourierLoginOk courierLoginOk = doPostRequest(baseUrl + loginCourierUri, courier).as(CourierLoginOk.class);
-        return courierLoginOk;
+        return doPostRequest(baseUrl + loginCourierUri, courier).as(CourierLoginOk.class);
     }
     public BadRequestApiAnswer loginCourierBadRequest(String login, String password){
         Courier courier = new Courier(login, password);
-        BadRequestApiAnswer badRequestApiAnswer = doPostRequest(baseUrl + loginCourierUri, courier).as(BadRequestApiAnswer.class);
-        return badRequestApiAnswer;
+        return doPostRequest(baseUrl + loginCourierUri, courier).as(BadRequestApiAnswer.class);
+
     }
 
 
