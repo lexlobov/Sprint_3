@@ -7,7 +7,7 @@ public class CourierCreateTest {
 
     CourierSteps steps = new CourierSteps();
 
-    @After
+
     public void cleanUp(){
         steps.loginCourier();
         steps.deleteCourier();
@@ -17,10 +17,15 @@ public class CourierCreateTest {
     @Test
     public void testCreateCourierIsCreated(){
         steps.checkCourierCreated();
+        cleanUp();
     }
 
+    // Даный тест падает, так как в документации к апи укзазано не то сообщение, которое приходит по факту
     @Test
     public void testSameLoginCourierCantBeCreated(){
-
+        steps.checkSameNameCourierCantBeCreated();
+        cleanUp();
     }
+
+    
 }

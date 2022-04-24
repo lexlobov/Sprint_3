@@ -83,6 +83,11 @@ public class CourierSteps {
         assertThat(badRequestApiAnswer.getMessage()).isEqualTo("Этот логин уже используется");
     }
 
+    public void checkCreateCourierNotEnoughData(String login, String password, String firstName){
+        BadRequestApiAnswer badRequestApiAnswer = createCourierApiClient.createCourierBadRequest(login, password, firstName);
+        assertThat(badRequestApiAnswer.getMessage()).isEqualTo("Недостаточно данных для создания учетной записи");
+    }
+
 
 
     public String getLogin() {
