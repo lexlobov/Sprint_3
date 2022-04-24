@@ -65,6 +65,12 @@ public class CourierSteps {
         assertThat(badRequestApiAnswer.getMessage()).isEqualTo("Учетная запись не найдена");
     }
 
+    public void checkLoginIncorrectLogin(){
+        String incorrectLogin = RandomStringUtils.randomAlphabetic(10);
+        BadRequestApiAnswer badRequestApiAnswer = loginCourierApiClient.loginCourierBadRequest(incorrectLogin, password);
+        assertThat(badRequestApiAnswer.getMessage()).isEqualTo("Учетная запись не найдена");
+    }
+
 
 
     public String getLogin() {

@@ -6,6 +6,7 @@ import steps.CourierSteps;
 public class CourierLoginTest {
 
     CourierSteps steps = new CourierSteps();
+
     @Before
     public void setUp(){
         steps.createCourier();
@@ -20,7 +21,6 @@ public class CourierLoginTest {
     @Test
     public void testCourierLogin(){
         steps.checkCourierLoggedIn();
-
     }
 
     @Test
@@ -31,5 +31,10 @@ public class CourierLoginTest {
     @Test
     public void testCourierLoginWithIncorrectPassword(){
         steps.checkLoginIncorrectPassword();
+    }
+
+    @Test
+    public void testCourierLoginWithIncorrectLogin(){
+        steps.checkLoginIncorrectLogin();
     }
 }
