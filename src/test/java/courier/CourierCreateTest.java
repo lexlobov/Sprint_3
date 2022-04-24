@@ -1,3 +1,5 @@
+package courier;
+
 import Models.Courier;
 import org.junit.After;
 import org.junit.Test;
@@ -27,5 +29,5 @@ public class CourierCreateTest {
         cleanUp();
     }
 
-    
+
 }
