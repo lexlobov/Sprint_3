@@ -70,10 +70,17 @@ public class CourierSteps {
         assertThat(badRequestApiAnswer.getMessage()).isEqualTo("Учетная запись не найдена");
     }
 
-    public void checkCourierCreated(){
+    public void checkCourierCreateReturnsOkTrue(){
         generateCourierData();
         OkApiAnswer okApiAnswer = createCourierApiClient.createCourierPositive(login, password, firstName);
         assertThat(okApiAnswer.isOk()).isEqualTo(true);
+    }
+
+    public void checkCourierCreated(){
+        generateCourierData();
+        createCourierApiClient.createCourierPositive(login, password, firstName);
+        CourierLoginOk courierLoginOk = loginCourierApiClient.loginCourierPositive(login, password);
+        assertThat(courierLoginOk.getId()).isNotNull().isGreaterThan(1l);
     }
 
     public void checkSameNameCourierCantBeCreated(){

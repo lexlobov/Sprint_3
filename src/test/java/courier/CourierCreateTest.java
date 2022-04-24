@@ -1,7 +1,5 @@
 package courier;
 
-import Models.Courier;
-import org.junit.After;
 import org.junit.Test;
 import steps.CourierSteps;
 
@@ -18,7 +16,7 @@ public class CourierCreateTest {
 
     @Test
     public void testCreateCourierIsCreated(){
-        steps.checkCourierCreated();
+        steps.checkCourierCreateReturnsOkTrue();
         cleanUp();
     }
 
@@ -26,6 +24,12 @@ public class CourierCreateTest {
     @Test
     public void testSameLoginCourierCantBeCreated(){
         steps.checkSameNameCourierCantBeCreated();
+        cleanUp();
+    }
+
+    @Test
+    public void testCourierCreated(){
+        steps.checkCourierCreated();
         cleanUp();
     }
 
