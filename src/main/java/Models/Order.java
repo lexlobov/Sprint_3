@@ -10,30 +10,30 @@ public class Order {
     private String metroStation;
     private String phone;
     private int rentTime;
-    private String deliveryDDate;
+    private String deliveryDate;
     private String comment;
     private List<String> color;
 
-    public Order(String firstName, String lastName, String address, String metroStation, String phone, int rentTime, String deliveryDDate, String comment, List<String> color) {
+    public Order(String firstName, String lastName, String address, String metroStation, String phone, int rentTime, String deliveryDate, String comment, List<String> color) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.metroStation = metroStation;
         this.phone = phone;
         this.rentTime = rentTime;
-        this.deliveryDDate = deliveryDDate;
+        this.deliveryDate = deliveryDate;
         this.comment = comment;
         this.color = color;
     }
 
-    public Order(String firstName, String lastName, String address, String metroStation, String phone, int rentTime, String deliveryDDate, String comment) {
+    public Order(String firstName, String lastName, String address, String metroStation, String phone, int rentTime, String deliveryDate, String comment) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.metroStation = metroStation;
         this.phone = phone;
         this.rentTime = rentTime;
-        this.deliveryDDate = deliveryDDate;
+        this.deliveryDate = deliveryDate;
         this.comment = comment;
     }
 
@@ -89,12 +89,12 @@ public class Order {
         this.rentTime = rentTime;
     }
 
-    public String getDeliveryDDate() {
-        return deliveryDDate;
+    public String getDeliveryDate() {
+        return deliveryDate;
     }
 
-    public void setDeliveryDDate(String deliveryDDate) {
-        this.deliveryDDate = deliveryDDate;
+    public void setDeliveryDate(String deliveryDate) {
+        this.deliveryDate = deliveryDate;
     }
 
     public String getComment() {
