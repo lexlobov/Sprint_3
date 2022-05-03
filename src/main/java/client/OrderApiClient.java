@@ -2,6 +2,7 @@ package client;
 
 import Models.ApiAnswers.OkApiAnswer;
 import Models.Order;
+import Models.Order1;
 import Models.OrderCreatedOk;
 import Models.Orders;
 
@@ -11,22 +12,23 @@ public class OrderApiClient extends BaseHTTPClient{
 
     private final String baseUrl = "http://qa-scooter.praktikum-services.ru";
     private final String orderUri = "/api/v1/orders";
+    private final String orderTrackUri = "/api/v1/orders/track" ;
 
     public OrderCreatedOk createOrderApiClient(Order order){
         return doPostRequest(baseUrl + orderUri, order).as(OrderCreatedOk.class);
     }
 
-    private Orders getOrdersByCourierIdApiClient(long courierId){
+    public Orders getOrdersByCourierIdApiClient(long courierId){
         return  doGetRequest(baseUrl + orderUri + "?courierId=" + courierId).as(Orders.class);
 
     }
 
-    private OkApiAnswer orderAcceptByCourier(long orderId, long courierId){
+    public OkApiAnswer orderAcceptByCourier(long orderId, long courierId){
         return doPutRequest(baseUrl + "/api/v1/orders/accept/" + orderId + "?courierId=" + courierId).as(OkApiAnswer.class);
     }
 
-    private Order getOrderByTrackNumber(long trackNumber){
-        return doGetRequest(baseUrl + orderUri + "track?t=" + trackNumber).as(Order.class);
+    public Order1 getOrderByTrackNumber(long trackNumber){
+        return doGetRequest(baseUrl + orderTrackUri + "?t=" + trackNumber).as(Order1.class);
     }
 
 

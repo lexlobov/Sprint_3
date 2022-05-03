@@ -24,13 +24,14 @@ public class OrderCreateSteps {
     }
 
     public Order generateNewOrder(){
-        return new Order(RandomStringUtils.randomAlphabetic(10),
+        return new Order(
+                RandomStringUtils.randomAlphabetic(10),
                 RandomStringUtils.randomAlphabetic(10),
                 RandomStringUtils.randomAlphabetic(10),
                 RandomStringUtils.randomAlphabetic(10),
                 RandomStringUtils.randomAlphabetic(10),
                 new Random().nextInt(10),
-                "2022-06-06",
+                "2022-06-06T00:00:00.000Z",
                 RandomStringUtils.randomAlphabetic(10),
                 Arrays.asList("BLACK"));
     }

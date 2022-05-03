@@ -4,6 +4,7 @@ package Models;
 import java.util.List;
 
 public class Order {
+    private long id;
     private String firstName;
     private String lastName;
     private String address;
@@ -13,6 +14,14 @@ public class Order {
     private String deliveryDate;
     private String comment;
     private List<String> color;
+    private boolean cancelled;
+    private boolean finished;
+    private boolean inDelivery;
+    private String createdAt;
+    private String updatedAt;
+    private String courierFirstName;
+    private int status;
+
 
     public Order(String firstName, String lastName, String address, String metroStation, String phone, int rentTime, String deliveryDate, String comment, List<String> color) {
         this.firstName = firstName;
@@ -39,6 +48,14 @@ public class Order {
 
     public Order(){
 
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
