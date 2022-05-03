@@ -25,4 +25,10 @@ public class BaseHTTPClient {
                 .delete(uri);
     }
 
-        }
+    protected Response doPutRequest(String uri){
+        return given()
+                .header("Content-Type", JSON)
+                .put(uri);
+    }
+
+}
