@@ -1,10 +1,14 @@
 package Orders;
 
+import Models.Order;
+import com.google.gson.Gson;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
-import java.lang.reflect.Array;
+import steps.OrdersSteps;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -20,6 +24,8 @@ public class CreateOrderParameterizedTest {
     private String deliveryDate;
     private String comment;
     private List<String> color;
+
+    OrdersSteps ordersSteps = new OrdersSteps();
 
     public CreateOrderParameterizedTest(String firstName,
                                         String lastName,
@@ -41,8 +47,9 @@ public class CreateOrderParameterizedTest {
         this.color = color;
     }
 
+
     @Parameterized.Parameters
-    public static Object[][] getCourierData() {
+    public static Object[][] getOrderData() {
         return new Object[][]{
 
                 {       RandomStringUtils.randomAlphabetic(10),
@@ -51,40 +58,45 @@ public class CreateOrderParameterizedTest {
                         RandomStringUtils.randomAlphabetic(10),
                         RandomStringUtils.randomAlphabetic(10),
                         new Random().nextInt(10),
+                        "2020-06-06",
                         RandomStringUtils.randomAlphabetic(10),
-                        RandomStringUtils.randomAlphabetic(10),
-                        new String[]{"BLACK"}},
+                        Arrays.asList("BLACK")},
                 {       RandomStringUtils.randomAlphabetic(10),
                         RandomStringUtils.randomAlphabetic(10),
                         RandomStringUtils.randomAlphabetic(10),
                         RandomStringUtils.randomAlphabetic(10),
                         RandomStringUtils.randomAlphabetic(10),
                         new Random().nextInt(10),
+                        "2020-06-06",
                         RandomStringUtils.randomAlphabetic(10),
-                        RandomStringUtils.randomAlphabetic(10),
-                        new String[]{"BLACK", "GREY"}},
+                        Arrays.asList("BLACK", "GREY"),},
                 {       RandomStringUtils.randomAlphabetic(10),
                         RandomStringUtils.randomAlphabetic(10),
                         RandomStringUtils.randomAlphabetic(10),
                         RandomStringUtils.randomAlphabetic(10),
                         RandomStringUtils.randomAlphabetic(10),
                         new Random().nextInt(10),
+                        "2020-06-06",
                         RandomStringUtils.randomAlphabetic(10),
-                        RandomStringUtils.randomAlphabetic(10),
-                        new String[]{"GREY"}},
+                        Arrays.asList("GREY"),},
                 {       RandomStringUtils.randomAlphabetic(10),
                         RandomStringUtils.randomAlphabetic(10),
                         RandomStringUtils.randomAlphabetic(10),
                         RandomStringUtils.randomAlphabetic(10),
                         RandomStringUtils.randomAlphabetic(10),
                         new Random().nextInt(10),
+                        "2020-06-06",
                         RandomStringUtils.randomAlphabetic(10),
-                        RandomStringUtils.randomAlphabetic(10),
-                        new String[]{""}},
+                        null,},
         };
     }
-
+    @Test
     public void createOrderWithDifferentColorsTest(){
+        Order order = new Order(firstName, lastName, address, metroStation, phone, rentTime, deliveryDate, comment, color);
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(order));
+        ordersSteps.createNewOrder(order);
+        ordersSteps.checkOrderCreated();
 
     }
 }
