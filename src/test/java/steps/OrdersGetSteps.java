@@ -3,6 +3,7 @@ package steps;
 import Models.Order;
 import client.OrderApiClient;
 import com.google.gson.Gson;
+import io.qameta.allure.Step;
 
 import java.util.List;
 
@@ -15,19 +16,25 @@ public class OrdersGetSteps {
 
     OrderApiClient orderApiClient = new OrderApiClient();
 
+
+
+    @Step("Метод получения id заказа с использованием трек номера")
     public void setOrderIdByTrackNumber(long trackNumber){
     setOrderId(orderApiClient.getOrderByTrackNumber(trackNumber).getOrder().getId());
 
     }
 
+    @Step("Метод для принятия курьером заказа в работу")
     public void acceptOrder(long courierId){
         orderApiClient.orderAcceptByCourier(orderId, courierId);
     }
 
+    @Step("Метод получения списка всех заказов для конкретного курьера")
     public void getListOfOrdersByCourierId(long courierId){
         setOrders(orderApiClient.getOrdersByCourierIdApiClient(courierId).getOrders());
     }
 
+    @Step("Проверка, что все поля ранее созданного заказа соответствуют тому, что попало в базу данных и возвращается в ответе")
     public void checkOrderIsCorrect(Order newOrder){
 
         assertThat(orders.get(0).getFirstName()).isEqualTo(newOrder.getFirstName());

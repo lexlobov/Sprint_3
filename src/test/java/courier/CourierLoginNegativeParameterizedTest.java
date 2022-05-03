@@ -1,5 +1,6 @@
 package courier;
 
+import io.qameta.allure.junit4.DisplayName;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +30,7 @@ public class CourierLoginNegativeParameterizedTest {
     }
 
     @Test
+    @DisplayName("Тест на то, что для авторизации обязательны и логин, и пароль")
     public void incorrectLoginPasswordCourierTest(){
         steps.checkLoginNotEnoughData(login, password);
     }

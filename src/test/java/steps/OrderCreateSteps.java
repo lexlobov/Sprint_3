@@ -2,6 +2,7 @@ package steps;
 
 import Models.Order;
 import client.OrderApiClient;
+import io.qameta.allure.Step;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.Arrays;
@@ -12,17 +13,21 @@ public class OrderCreateSteps {
 
     private long trackNumber;
 
+
     OrderApiClient orderApiClient = new OrderApiClient();
 
+    @Step("Создание нового заказа")
     public void createNewOrder(Order order){
         setTrackNumber(orderApiClient.createOrderApiClient(order).getTrack());
 
     }
 
+    @Step("Проверка, что при создании курьера возвращается трек номер и он не равен нулю")
     public void checkOrderCreated(){
         assertThat(trackNumber).isNotNull().isGreaterThan(1l);
     }
 
+    @Step("Метод генерации случайных данных для заказа")
     public Order generateNewOrder(){
         return new Order(
                 RandomStringUtils.randomAlphabetic(10),

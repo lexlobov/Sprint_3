@@ -2,6 +2,7 @@ package Orders;
 
 import Models.Order;
 import com.google.gson.Gson;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,6 +35,7 @@ public class GetOrdersTest {
     }
 
     @Test
+    @DisplayName("Тест на то, что в списке заказов приходят верные заказы")
     public void getOrdersByCourierIdReturnsCorrectOrdersList(){
         ordersGetSteps.setOrderIdByTrackNumber(orderCreateSteps.getTrackNumber());
         ordersGetSteps.acceptOrder(courierSteps.getCourierId());

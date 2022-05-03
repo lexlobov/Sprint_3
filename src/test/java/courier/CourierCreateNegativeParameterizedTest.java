@@ -1,5 +1,6 @@
 package courier;
 
+import io.qameta.allure.junit4.DisplayName;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,6 +36,7 @@ public class CourierCreateNegativeParameterizedTest {
 
     // Один из тестов падает, так как в документации не указано, что поле firstName - необязательное
     @Test
+    @DisplayName("Тест создания курьера, когда одно из обязательных полей не заполнено")
     public void createCourierNotEnoughDataTest(){
         steps.checkCreateCourierNotEnoughData(login, password, firstName);
     }

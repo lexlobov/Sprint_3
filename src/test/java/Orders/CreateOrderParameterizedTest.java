@@ -2,6 +2,8 @@ package Orders;
 
 import Models.Order;
 import com.google.gson.Gson;
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -90,6 +92,8 @@ public class CreateOrderParameterizedTest {
         };
     }
     @Test
+    @DisplayName("Тест на то, создание заказа с разными цветами")
+    @Description("Можно создать заказ с одним цветом, с двумя, или ни с одним и ни с другим")
     public void createOrderWithDifferentColorsTest(){
         Order order = new Order(firstName, lastName, address, metroStation, phone, rentTime, deliveryDate, comment, color);
         Gson gson = new Gson();
