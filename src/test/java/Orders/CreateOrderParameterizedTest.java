@@ -2,12 +2,11 @@ package Orders;
 
 import Models.Order;
 import com.google.gson.Gson;
-import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import steps.OrdersSteps;
+import steps.OrderCreateSteps;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -25,7 +24,7 @@ public class CreateOrderParameterizedTest {
     private String comment;
     private List<String> color;
 
-    OrdersSteps ordersSteps = new OrdersSteps();
+    OrderCreateSteps ordersSteps = new OrderCreateSteps();
 
     public CreateOrderParameterizedTest(String firstName,
                                         String lastName,

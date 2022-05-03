@@ -1,10 +1,9 @@
 package steps;
 
 import Models.Order;
-import Models.OrderCreatedOk;
 import client.OrderApiClient;
 import static org.assertj.core.api.Assertions.assertThat;
-public class OrdersSteps {
+public class OrderCreateSteps {
 
     private long trackNumber;
 
