@@ -3,7 +3,7 @@ package courier;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
 import steps.CourierSteps;
-
+@DisplayName("Различные варианты создания курьера")
 public class CourierCreateTest {
 
     CourierSteps steps = new CourierSteps();

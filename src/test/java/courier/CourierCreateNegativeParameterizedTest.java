@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import steps.CourierSteps;
 @RunWith(Parameterized.class)
+@DisplayName("Негативные варианты создания курьера")
 public class CourierCreateNegativeParameterizedTest {
 
     private String login;

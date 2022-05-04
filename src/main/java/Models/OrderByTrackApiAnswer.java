@@ -1,6 +1,6 @@
 package Models;
 
-public class Order1 {
+public class OrderByTrackApiAnswer {
     Order order;
 
     public Order getOrder() {

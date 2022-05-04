@@ -8,6 +8,7 @@ import org.junit.runners.Parameterized;
 import steps.CourierSteps;
 
 @RunWith(Parameterized.class)
+@DisplayName("Негативные сценарии авторизации при незаполенных обязатльных полях")
 public class CourierLoginNegativeParameterizedTest {
 
     private String login;
