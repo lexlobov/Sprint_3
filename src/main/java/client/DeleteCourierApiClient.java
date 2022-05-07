@@ -8,9 +8,9 @@ public class DeleteCourierApiClient extends BaseHTTPClient{
 
     private final String deleteCourierUri = "/api/v1/courier/";
 
-    public ValidatableResponse deleteCourier(DeleteCourier deleteCourier){
+    public ValidatableResponse deleteCourier(long id){
         return given().spec(baseSpec())
-                .body(deleteCourier)
+                .body(new DeleteCourier(Long.toString(id)))
                 .when()
                 .delete(deleteCourierUri)
                 .then();

@@ -8,9 +8,9 @@ public class CreateCourierApiClient extends BaseHTTPClient{
 
     private final String createCourierUri = "/api/v1/courier";
 
-    public ValidatableResponse createCourier(Courier courier){
+    public ValidatableResponse createCourier(String login, String password, String firstName){
         return given().spec(baseSpec())
-                .body(courier)
+                .body(new Courier(login, password, firstName))
                 .when()
                 .post(createCourierUri)
                 .then();

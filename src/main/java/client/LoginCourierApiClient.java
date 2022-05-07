@@ -8,15 +8,22 @@ public class LoginCourierApiClient extends BaseHTTPClient {
 
     private final String loginCourierUri = "/api/v1/courier/login";
 
-    public ValidatableResponse loginCourier(Courier courier){
+    public ValidatableResponse loginCourier(String login, String password){
         return given()
                 .spec(baseSpec())
-                .body(courier)
+                .body(new Courier(login, password))
                 .when()
                 .post(loginCourierUri)
                 .then();
 
     }
+    public ValidatableResponse loginCourierWithoutBody(){
+        return given()
+                .spec(baseSpec())
+                .when()
+                .post(loginCourierUri)
+                .then();
 
+    }
 
 }
