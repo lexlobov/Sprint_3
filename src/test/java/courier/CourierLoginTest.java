@@ -45,4 +45,10 @@ public class CourierLoginTest {
     public void testCourierLoginWithIncorrectLogin(){
         steps.checkLoginIncorrectLogin();
     }
+
+    @Test
+    @DisplayName("Тест на авторизацию, когда в запросе отсутствует body")
+    public void testCourierLoginWithoutBody(){
+        steps.checkLoginCourierLoginWithoutBody();
+    }
 }

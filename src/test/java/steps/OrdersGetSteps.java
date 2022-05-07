@@ -1,12 +1,16 @@
 package steps;
 
 import Models.Order;
+import Models.Orders;
 import client.OrderApiClient;
 import com.google.gson.Gson;
 import io.qameta.allure.Step;
-
+import io.restassured.response.ValidatableResponse;
+import org.hamcrest.Matchers;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class OrdersGetSteps {
@@ -19,19 +23,23 @@ public class OrdersGetSteps {
 
 
     @Step("Метод получения id заказа с использованием трек номера")
-    public void setOrderIdByTrackNumber(long trackNumber){
-    setOrderId(orderApiClient.getOrderByTrackNumber(trackNumber).getOrder().getId());
-
+    public void setOrderIdByTrackNumber(int trackNumber){
+    ValidatableResponse response = orderApiClient.getOrderByTrackNumber(trackNumber);
+    setOrderId(response.extract().path("order.id"));
+    assertThat("orderId should be greater than 0", orderId, Matchers.greaterThan(0l));
     }
 
     @Step("Метод для принятия курьером заказа в работу")
-    public void acceptOrder(long courierId){
-        orderApiClient.orderAcceptByCourier(orderId, courierId);
+    public void acceptOrder(int courierId){
+        ValidatableResponse response = orderApiClient.orderAcceptByCourier(orderId, courierId);
+        boolean  answer = response.extract().path("ok");
+        assertThat("Answer should be True", answer, equalTo(true));
     }
 
     @Step("Метод получения списка всех заказов для конкретного курьера")
-    public void getListOfOrdersByCourierId(long courierId){
-        setOrders(orderApiClient.getOrdersByCourierIdApiClient(courierId).getOrders());
+    public void getListOfOrdersByCourierId(int courierId){
+        Orders orders = orderApiClient.getOrdersByCourierId(courierId);
+        setOrders(orders.getOrders());
     }
 
     @Step("Проверка, что все поля ранее созданного заказа соответствуют тому, что попало в базу данных и возвращается в ответе")
@@ -55,7 +63,7 @@ public class OrdersGetSteps {
         return orderId;
     }
 
-    public void setOrderId(long orderId) {
+    public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
 

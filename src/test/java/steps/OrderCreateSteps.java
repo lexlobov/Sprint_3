@@ -11,20 +11,20 @@ import java.util.Random;
 import static org.assertj.core.api.Assertions.assertThat;
 public class OrderCreateSteps {
 
-    private long trackNumber;
+    private int trackNumber;
 
 
     OrderApiClient orderApiClient = new OrderApiClient();
 
     @Step("Создание нового заказа")
     public void createNewOrder(Order order){
-        setTrackNumber(orderApiClient.createOrderApiClient(order).getTrack());
+        setTrackNumber(orderApiClient.createOrder(order).extract().path("track"));
 
     }
 
-    @Step("Проверка, что при создании курьера возвращается трек номер и он не равен нулю")
+    @Step("Проверка, что при создании заказа возвращается трек номер и он не равен нулю")
     public void checkOrderCreated(){
-        assertThat(trackNumber).isNotNull().isGreaterThan(1l);
+        assertThat(trackNumber).isNotNull().isGreaterThan(1);
     }
 
     @Step("Метод генерации случайных данных для заказа")
@@ -41,11 +41,11 @@ public class OrderCreateSteps {
                 Arrays.asList("BLACK"));
     }
 
-    public long getTrackNumber() {
+    public int getTrackNumber() {
         return trackNumber;
     }
 
-    public void setTrackNumber(long trackNumber) {
+    public void setTrackNumber(int trackNumber) {
         this.trackNumber = trackNumber;
     }
 }

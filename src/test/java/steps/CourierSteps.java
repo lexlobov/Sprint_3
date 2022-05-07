@@ -19,7 +19,7 @@ public class CourierSteps {
     private String login;
     private String password;
     private String firstName;
-    private long courierId;
+    private int courierId;
 
 
 
@@ -55,7 +55,7 @@ public class CourierSteps {
     public void checkCourierLoggedIn(){
         ValidatableResponse response = loginCourierApiClient.loginCourier(login, password);
         int statusCode = response.extract().statusCode();
-        long courierId = response.extract().path("id");
+        int courierId = response.extract().path("id");
         assertThat("Status code should be 200", statusCode, equalTo(HttpStatus.SC_OK));
         assertThat("CourierId Should be returned", courierId, Matchers.notNullValue());
     }
@@ -64,8 +64,8 @@ public class CourierSteps {
     public void checkCourierLoginReturnsId(){
         ValidatableResponse response = loginCourierApiClient.loginCourier(login, password);
         response.extract().path("id");
-        long courierId = response.extract().path("id");
-        assertThat("courierId should be greater than 0", courierId, Matchers.greaterThan(1l));
+        int courierId = response.extract().path("id");
+        assertThat("courierId should be greater than 0", courierId, Matchers.greaterThan(1));
     }
 
     @Step("Проверка, когда для входа недостаточно данных")
@@ -160,11 +160,11 @@ public class CourierSteps {
         this.firstName = firstName;
     }
 
-    public long getCourierId() {
+    public int getCourierId() {
         return courierId;
     }
 
-    public void setCourierId(long courierId) {
+    public void setCourierId(int courierId) {
         this.courierId = courierId;
     }
 }

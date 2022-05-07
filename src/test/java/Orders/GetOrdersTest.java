@@ -1,7 +1,6 @@
 package Orders;
 
 import Models.Order;
-import com.google.gson.Gson;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
@@ -20,12 +19,9 @@ public class GetOrdersTest {
 
     @Before
     public void setUp (){
-        Gson gson = new Gson();
         courierSteps.createCourier();
         courierSteps.loginCourier();
         orderCreateSteps.createNewOrder(newOrder);
-
-
     }
 
     @After
