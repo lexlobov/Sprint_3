@@ -1,31 +1,45 @@
 package client;
 
-import Models.ApiAnswers.OkApiAnswer;
 import Models.Order;
-import Models.OrderByTrackApiAnswer;
-import Models.OrderCreatedOk;
-import Models.Orders;
+import io.restassured.response.ValidatableResponse;
+
+import static io.restassured.RestAssured.given;
 
 public class OrderApiClient extends BaseHTTPClient{
 
     private final String orderUri = "/api/v1/orders";
     private final String orderTrackUri = "/api/v1/orders/track" ;
 
-    public OrderCreatedOk createOrderApiClient(Order order){
-        return doPostRequest(baseUrl + orderUri, order).as(OrderCreatedOk.class);
+    public ValidatableResponse createOrderApiClient(Order order){
+        return given().spec(baseSpec())
+                .body(order)
+                .when()
+                .post(orderUri)
+                .then();
     }
 
-    public Orders getOrdersByCourierIdApiClient(long courierId){
-        return  doGetRequest(baseUrl + orderUri + "?courierId=" + courierId).as(Orders.class);
-
+    public ValidatableResponse getOrdersByCourierIdApiClient(long courierId){
+        return given().spec(baseSpec())
+                .queryParams("courierId", courierId)
+                .when()
+                .get(orderUri)
+                .then();
     }
 
-    public OkApiAnswer orderAcceptByCourier(long orderId, long courierId){
-        return doPutRequest(baseUrl + "/api/v1/orders/accept/" + orderId + "?courierId=" + courierId).as(OkApiAnswer.class);
+    public ValidatableResponse orderAcceptByCourier(long orderId, long courierId){
+        return given().spec(baseSpec())
+                .queryParams("courierId", courierId)
+                .when()
+                .get(orderUri + orderId)
+                .then();
     }
 
-    public OrderByTrackApiAnswer getOrderByTrackNumber(long trackNumber){
-        return doGetRequest(baseUrl + orderTrackUri + "?t=" + trackNumber).as(OrderByTrackApiAnswer.class);
+    public ValidatableResponse getOrderByTrackNumber(long trackNumber){
+        return given().spec(baseSpec())
+                .queryParams("courierId", trackNumber)
+                .when()
+                .get(orderTrackUri)
+                .then();
     }
 
 

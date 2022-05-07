@@ -1,22 +1,18 @@
 package client;
 
-import Models.ApiAnswers.BadRequestApiAnswer;
-import Models.ApiAnswers.OkApiAnswer;
 import Models.DeleteCourier;
+import io.restassured.response.ValidatableResponse;
+import static io.restassured.RestAssured.given;
 
 public class DeleteCourierApiClient extends BaseHTTPClient{
 
     private final String deleteCourierUri = "/api/v1/courier/";
 
-
-    public OkApiAnswer deleteCourierOk(long id){
-        DeleteCourier deleteCourier = new DeleteCourier(Long.toString(id));
-        return doDeleteRequest(baseUrl + deleteCourierUri, deleteCourier).as(OkApiAnswer.class);
-    }
-
-    public BadRequestApiAnswer deleteCourierBadRequest(long id){
-        DeleteCourier deleteCourier = new DeleteCourier(Long.toString(id));
-        return doDeleteRequest(baseUrl + deleteCourierUri, deleteCourier).as(BadRequestApiAnswer.class);
-
+    public ValidatableResponse deleteCourier(DeleteCourier deleteCourier){
+        return given().spec(baseSpec())
+                .body(deleteCourier)
+                .when()
+                .delete(deleteCourierUri)
+                .then();
     }
 }
