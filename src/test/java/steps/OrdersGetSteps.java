@@ -15,7 +15,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class OrdersGetSteps {
 
-    private long orderId;
+    private int orderId;
     private List<Order> orders;
 
     OrderApiClient orderApiClient = new OrderApiClient();
@@ -26,7 +26,7 @@ public class OrdersGetSteps {
     public void setOrderIdByTrackNumber(int trackNumber){
     ValidatableResponse response = orderApiClient.getOrderByTrackNumber(trackNumber);
     setOrderId(response.extract().path("order.id"));
-    assertThat("orderId should be greater than 0", orderId, Matchers.greaterThan(0l));
+    assertThat("orderId should be greater than 0", orderId, Matchers.greaterThan(0));
     }
 
     @Step("Метод для принятия курьером заказа в работу")

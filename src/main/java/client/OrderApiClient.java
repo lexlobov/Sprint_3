@@ -28,7 +28,7 @@ public class OrderApiClient extends BaseHTTPClient{
 
     }
 
-    public ValidatableResponse orderAcceptByCourier(long orderId, int courierId){
+    public ValidatableResponse orderAcceptByCourier(int orderId, int courierId){
         return given().spec(baseSpec())
                 .queryParam("courierId", courierId)
                 .when()

@@ -3,12 +3,15 @@ package steps;
 import Models.Order;
 import client.OrderApiClient;
 import io.qameta.allure.Step;
+import io.restassured.response.ValidatableResponse;
 import org.apache.commons.lang3.RandomStringUtils;
-
+import org.apache.http.HttpStatus;
 import java.util.Arrays;
 import java.util.Random;
-
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.assertj.core.api.Assertions.assertThat;
+
 public class OrderCreateSteps {
 
     private int trackNumber;
@@ -18,13 +21,16 @@ public class OrderCreateSteps {
 
     @Step("Создание нового заказа")
     public void createNewOrder(Order order){
-        setTrackNumber(orderApiClient.createOrder(order).extract().path("track"));
-
+        ValidatableResponse response = orderApiClient.createOrder(order);
+        int track = response.extract().path("track");
+        int statusCode = response.extract().statusCode();
+        assertThat("Status code should be 201", statusCode, equalTo(HttpStatus.SC_CREATED));
+        setTrackNumber(track);
     }
 
     @Step("Проверка, что при создании заказа возвращается трек номер и он не равен нулю")
     public void checkOrderCreated(){
-        assertThat(trackNumber).isNotNull().isGreaterThan(1);
+        assertThat(trackNumber).isNotNull().isGreaterThan(0);
     }
 
     @Step("Метод генерации случайных данных для заказа")
