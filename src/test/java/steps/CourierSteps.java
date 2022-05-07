@@ -126,15 +126,6 @@ public class CourierSteps {
         assertThat("Status code should be 400", status, equalTo(400));
     }
 
-    @Step("Проверка, что сервер ведет себя корректно при отправке запроса на login без body")
-    public void checkLoginCourierLoginWithoutBody(){
-        ValidatableResponse response = loginCourierApiClient.loginCourierWithoutBody();
-        String answer = response.extract().path("message");
-        int status = response.extract().statusCode();
-        assertThat("Answer should be 'Недостаточно данных для входа'", answer, equalTo("Недостаточно данных для входа"));
-        assertThat("Status code should be 400", status, equalTo(400));
-    }
-
 
     public String getLogin() {
         return login;

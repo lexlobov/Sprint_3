@@ -46,9 +46,4 @@ public class CourierLoginTest {
         steps.checkLoginIncorrectLogin();
     }
 
-    @Test
-    @DisplayName("Тест на авторизацию, когда в запросе отсутствует body")
-    public void testCourierLoginWithoutBody(){
-        steps.checkLoginCourierLoginWithoutBody();
-    }
 }

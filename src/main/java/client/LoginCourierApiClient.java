@@ -17,13 +17,6 @@ public class LoginCourierApiClient extends BaseHTTPClient {
                 .then();
 
     }
-    public ValidatableResponse loginCourierWithoutBody(){
-        return given()
-                .spec(baseSpec())
-                .when()
-                .post(loginCourierUri)
-                .then();
 
-    }
 
 }
