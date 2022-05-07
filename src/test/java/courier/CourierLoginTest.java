@@ -5,7 +5,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import steps.CourierSteps;
-
+@DisplayName("Различные варианты авторизации курьера")
 public class CourierLoginTest {
 
     CourierSteps steps = new CourierSteps();

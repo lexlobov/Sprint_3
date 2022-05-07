@@ -2,11 +2,9 @@ package client;
 
 import Models.ApiAnswers.OkApiAnswer;
 import Models.Order;
-import Models.Order1;
+import Models.OrderByTrackApiAnswer;
 import Models.OrderCreatedOk;
 import Models.Orders;
-
-import java.util.List;
 
 public class OrderApiClient extends BaseHTTPClient{
 
@@ -27,8 +25,8 @@ public class OrderApiClient extends BaseHTTPClient{
         return doPutRequest(baseUrl + "/api/v1/orders/accept/" + orderId + "?courierId=" + courierId).as(OkApiAnswer.class);
     }
 
-    public Order1 getOrderByTrackNumber(long trackNumber){
-        return doGetRequest(baseUrl + orderTrackUri + "?t=" + trackNumber).as(Order1.class);
+    public OrderByTrackApiAnswer getOrderByTrackNumber(long trackNumber){
+        return doGetRequest(baseUrl + orderTrackUri + "?t=" + trackNumber).as(OrderByTrackApiAnswer.class);
     }
 
 

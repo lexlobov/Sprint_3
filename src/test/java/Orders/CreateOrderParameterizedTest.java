@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Random;
 
 @RunWith(Parameterized.class)
+@DisplayName("Создание заказа с разными параметрами цвета")
 public class CreateOrderParameterizedTest {
 
     private String firstName;
@@ -96,8 +97,6 @@ public class CreateOrderParameterizedTest {
     @Description("Можно создать заказ с одним цветом, с двумя, или ни с одним и ни с другим")
     public void createOrderWithDifferentColorsTest(){
         Order order = new Order(firstName, lastName, address, metroStation, phone, rentTime, deliveryDate, comment, color);
-        Gson gson = new Gson();
-        System.out.println(gson.toJson(order));
         ordersSteps.createNewOrder(order);
         ordersSteps.checkOrderCreated();
 
