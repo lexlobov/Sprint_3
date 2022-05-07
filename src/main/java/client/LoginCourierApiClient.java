@@ -7,7 +7,6 @@ import Models.CourierLoginOk;
 
 public class LoginCourierApiClient extends BaseHTTPClient {
 
-    private final String baseUrl = "http://qa-scooter.praktikum-services.ru";
     private final String loginCourierUri = "/api/v1/courier/login";
 
     public CourierLoginOk loginCourierPositive(String login, String password){

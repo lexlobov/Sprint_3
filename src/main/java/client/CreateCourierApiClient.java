@@ -6,7 +6,6 @@ import Models.Courier;
 
 public class CreateCourierApiClient extends BaseHTTPClient{
 
-    private final String baseUrl = "http://qa-scooter.praktikum-services.ru";
     private final String createCourierUri = "/api/v1/courier";
 
     public OkApiAnswer createCourierPositive(String login, String password, String firstName){

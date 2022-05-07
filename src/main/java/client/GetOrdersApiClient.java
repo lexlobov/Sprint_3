@@ -4,7 +4,6 @@ import Models.Orders;
 
 public class GetOrdersApiClient extends BaseHTTPClient{
 
-    private final String baseUrl = "http://qa-scooter.praktikum-services.ru";
 
     public Orders getOrders(){
         return doGetRequest(baseUrl + "/api/v1/orders").body().as(Orders.class);

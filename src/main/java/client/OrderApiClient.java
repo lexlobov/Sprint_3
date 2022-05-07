@@ -8,7 +8,6 @@ import Models.Orders;
 
 public class OrderApiClient extends BaseHTTPClient{
 
-    private final String baseUrl = "http://qa-scooter.praktikum-services.ru";
     private final String orderUri = "/api/v1/orders";
     private final String orderTrackUri = "/api/v1/orders/track" ;
 

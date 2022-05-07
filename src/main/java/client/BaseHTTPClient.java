@@ -6,6 +6,7 @@ public class BaseHTTPClient {
 
 
     private final String JSON = "application/json";
+    protected final String baseUrl = "http://qa-scooter.praktikum-services.ru";
 
     protected Response doGetRequest (String uri){
         return given()

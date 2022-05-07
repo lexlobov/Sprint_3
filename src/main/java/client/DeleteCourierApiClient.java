@@ -6,7 +6,6 @@ import Models.DeleteCourier;
 
 public class DeleteCourierApiClient extends BaseHTTPClient{
 
-    private final String baseUrl = "http://qa-scooter.praktikum-services.ru";
     private final String deleteCourierUri = "/api/v1/courier/";
 
 
