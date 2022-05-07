@@ -2,6 +2,7 @@ package steps;
 
 import Models.Order;
 import client.OrderApiClient;
+import com.github.javafaker.Faker;
 import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -35,12 +36,13 @@ public class OrderCreateSteps {
 
     @Step("Метод генерации случайных данных для заказа")
     public Order generateNewOrder(){
+        Faker faker = new Faker();
         return new Order(
+                faker.name().firstName(),
+                faker.name().lastName(),
+                faker.address().streetAddressNumber(),
                 RandomStringUtils.randomAlphabetic(10),
-                RandomStringUtils.randomAlphabetic(10),
-                RandomStringUtils.randomAlphabetic(10),
-                RandomStringUtils.randomAlphabetic(10),
-                RandomStringUtils.randomAlphabetic(10),
+                faker.phoneNumber().cellPhone(),
                 new Random().nextInt(10),
                 "2022-06-06T00:00:00.000Z",
                 RandomStringUtils.randomAlphabetic(10),

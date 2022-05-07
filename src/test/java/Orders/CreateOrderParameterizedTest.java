@@ -1,6 +1,7 @@
 package Orders;
 
 import Models.Order;
+import com.github.javafaker.Faker;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -40,11 +41,12 @@ public class CreateOrderParameterizedTest {
     @DisplayName("Тест на то, создание заказа с разными цветами")
     @Description("Можно создать заказ с одним цветом, с двумя, или ни с одним и ни с другим")
     public void createOrderWithDifferentColorsTest(){
-        Order order = new Order(RandomStringUtils.randomAlphabetic(10),
+        Faker faker = new Faker();
+        Order order = new Order(faker.name().firstName(),
+                faker.name().lastName(),
+                faker.address().streetAddressNumber(),
                 RandomStringUtils.randomAlphabetic(10),
-                RandomStringUtils.randomAlphabetic(10),
-                RandomStringUtils.randomAlphabetic(10),
-                RandomStringUtils.randomAlphabetic(10),
+                faker.phoneNumber().cellPhone(),
                 new Random().nextInt(10),
                 "2020-06-06",
                 RandomStringUtils.randomAlphabetic(10),
